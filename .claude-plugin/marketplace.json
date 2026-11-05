@@ -1,0 +1,13 @@
+{
+  "name": "onbox",
+  "description": "Onbox, the AI agent for customer support, for your own agent.",
+  "owner": {
+    "name": "Onbox Labs"
+  },
+  "plugins": [
+    {
+      "name": "onbox",
+      "source": "./"
+    }
+  ]
+}

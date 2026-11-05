@@ -1,0 +1,38 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "onbox",
+  "version": "1.1.0",
+  "description": "Set up and run Onbox, the AI support agent for your inbox, from your own agent: connect the support mailbox, build the agent's brain from your history and docs, and decide what is waiting on you.",
+  "author": {
+    "name": "Onbox Labs",
+    "email": "hello@onbox.ing",
+    "url": "https://www.onbox.ing"
+  },
+  "homepage": "https://www.onbox.ing",
+  "repository": "https://github.com/Onboxing/onbox-for-agents",
+  "license": "MIT",
+  "keywords": ["customer-support", "support-inbox", "email", "helpdesk", "ai-agent"],
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/onbox-setup/SKILL.md",
+      "interface": {
+        "displayName": "Onbox",
+        "shortDescription": "AI agent for your support inbox",
+        "longDescription": "Onbox answers your customers from your support inbox and website chat, and hands a person what it should not decide alone. With this plugin your agent sets Onbox up for you: it connects your support mailbox, builds the Onbox agent's knowledge from your past conversations and your docs, and finishes the setup. Afterwards it shows what is waiting on you, such as replies to approve, actions held for review and changes to the agent's knowledge, and records each decision you make. Connecting a mailbox happens in your browser, and nothing is sent to a customer without your explicit confirmation. Requires an Onbox account; the agent acts only within the organisation you sign in to.",
+        "developerName": "Onbox Labs",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"],
+        "websiteURL": "https://www.onbox.ing",
+        "privacyPolicyURL": "https://www.onbox.ing/privacy-policy",
+        "termsOfServiceURL": "https://www.onbox.ing/terms-of-service",
+        "defaultPrompt": [
+          "Set up Onbox for our customer support.",
+          "What is waiting on me in Onbox?",
+          "Review what the Onbox agent learned about our product."
+        ],
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png"
+      }
+    }
+  }
+}

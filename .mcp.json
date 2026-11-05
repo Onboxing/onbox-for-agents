@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "onbox": {
+      "type": "http",
+      "url": "https://api.onbox.ing/mcp"
+    }
+  }
+}
