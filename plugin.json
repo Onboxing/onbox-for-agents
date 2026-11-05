@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "onbox",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Set up and run Onbox, the AI support agent for your inbox, from your own agent: connect the support mailbox, build the agent's brain from your history and docs, and decide what is waiting on you.",
   "author": {
     "name": "Onbox Labs",
@@ -24,7 +24,7 @@
         "capabilities": ["Read", "Write"],
         "websiteURL": "https://www.onbox.ing",
         "privacyPolicyURL": "https://www.onbox.ing/privacy-policy",
-        "supportURL": "https://www.onbox.ing/contact",
+        "supportURL": "mailto:support@onbox.ing",
         "termsOfServiceURL": "https://www.onbox.ing/terms-of-service",
         "defaultPrompt": [
           "Set up Onbox for our customer support.",
