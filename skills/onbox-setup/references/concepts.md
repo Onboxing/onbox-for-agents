@@ -30,7 +30,7 @@ What it holds:
 
 The difference in one line each: a **skill** is how to do something, a **memory** is something that is true or was learned, and a **policy** is a rule about what is allowed.
 
-The brain build reads the inbox history and writes skills and memories. Admins write to the org brain directly; a change from someone else becomes a **brain proposal** that an admin merges or declines.
+The brain build reads the inbox history and writes skills and memories. Admins write to the org brain directly; a change from someone else becomes a **brain proposal** that an admin accepts or declines.
 
 ## Pending actions
 
@@ -46,12 +46,12 @@ A pending action is a call the Onbox agent wanted to make (send a reply, issue a
 
 A person approves, changes or discards it. A failed one can be approved again to retry.
 
-## Asking, escalating, waiting on you
+## Asking, escalating, my inbox
 
 - **Asking**: the Onbox agent asks a teammate for an answer or an approval and keeps the conversation.
 - **Escalating**: the Onbox agent gives the conversation to a person and stops working on it. The person named in the brain comes first, then the inbox's fallback.
 - **Assigning**: a conversation has one assignee, the Onbox agent, a person, or nobody. Assigning it to the Onbox agent lets it handle the conversation.
-- **Waiting on you**: something needs this person to act: a draft or action to review, a question to answer, a failure to resolve.
+- **My inbox**: the conversations that need this person, each with why it is there: a draft to send, an action to approve, an escalation, a request, a customer reply, something the Onbox agent has not handled, a mention by a teammate.
 - **A comment**: an internal note on a conversation. It never reaches the customer.
 
 Say "escalate" only for giving the conversation to a person. Asking a teammate is "asking", not escalating.
