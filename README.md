@@ -68,7 +68,7 @@ Later, ask "what is waiting on me in Onbox?" to review replies and actions held 
 
 ## Support
 
-- Contact: hello@onbox.ing
+- Email: support@onbox.ing
 - Privacy policy: https://www.onbox.ing/privacy-policy
 - Terms of service: https://www.onbox.ing/terms-of-service
 
