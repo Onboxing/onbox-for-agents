@@ -24,6 +24,7 @@
         "capabilities": ["Read", "Write"],
         "websiteURL": "https://www.onbox.ing",
         "privacyPolicyURL": "https://www.onbox.ing/privacy-policy",
+        "supportURL": "https://www.onbox.ing/contact",
         "termsOfServiceURL": "https://www.onbox.ing/terms-of-service",
         "defaultPrompt": [
           "Set up Onbox for our customer support.",
