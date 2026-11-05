@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "onbox",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Set up and run Onbox from your own agent: an always-on agent that answers your customers on every channel, learns how to handle each request, and leaves to you what it should not decide alone.",
   "author": {
     "name": "Onbox Labs",
@@ -85,7 +85,7 @@
         }
       },
       "publication": {
-        "release_notes": "1.1.4: Onbox for agents. Your agent sets up Onbox, the always-on agent that answers your customers on every channel (connecting channels and tools, building the agent's knowledge, finishing setup), then shows what is waiting on you to approve, edit or discard. Includes the onbox-setup skill."
+        "release_notes": "1.1.5: Onbox for agents. Your agent sets up Onbox, the always-on agent that answers your customers on every channel (connecting channels and tools, building the agent's knowledge, finishing setup), then shows what is waiting on you to approve, edit or discard. Includes the onbox-setup skill."
       }
     }
   }
