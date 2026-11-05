@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "onbox",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Set up and run Onbox from your own agent: an always-on agent that answers your customers on every channel, learns how to handle each request, and leaves to you what it should not decide alone.",
   "author": {
     "name": "Onbox Labs",
@@ -18,7 +18,7 @@
       "interface": {
         "displayName": "Onbox",
         "shortDescription": "Always-on agent, every channel",
-        "longDescription": "Onbox is the simplest way for a business to set up an always-on agent that answers its customers on every channel: email, WhatsApp, website chat, Instagram and more. It learns on its own how to handle each kind of request, from your past conversations, your docs and every correction you make, and it hands a person what it should not decide alone. This plugin lets your agent run Onbox for you: connect your channels and tools, build the agent's knowledge, finish the setup, then see and decide what is waiting on you. Connecting an account happens in your browser, and nothing is sent to a customer without your confirmation. Requires an Onbox account; the agent acts only within the organisation you sign in to.",
+        "longDescription": "Onbox is the simplest way for a business to set up an always-on agent that answers its customers on every channel, such as email, website chat and social messaging. It learns how to handle each kind of request from your past conversations, your docs and the corrections you make, and it hands a person what it should not decide alone. This plugin lets your agent run Onbox for you: connect your channels and tools, build the Onbox agent's knowledge, finish the setup, then see and decide what is waiting on you. Connecting an account happens in your browser. Your agent can approve an action only after you confirm it. Requires an Onbox account; your agent acts only within the organisation you sign in to.",
         "developerName": "Onbox Labs",
         "category": "Productivity",
         "capabilities": ["Read", "Write"],
@@ -85,7 +85,7 @@
         }
       },
       "publication": {
-        "release_notes": "1.1.5: Onbox for agents. Your agent sets up Onbox, the always-on agent that answers your customers on every channel (connecting channels and tools, building the agent's knowledge, finishing setup), then shows what is waiting on you to approve, edit or discard. Includes the onbox-setup skill."
+        "release_notes": "1.1.6: Onbox for agents. Your agent sets up Onbox, the always-on agent that answers your customers on every channel (connecting channels and tools, building the agent's knowledge, finishing setup), then shows what is waiting on you to approve, edit or discard. Includes the onbox-setup skill."
       }
     }
   }
