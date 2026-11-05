@@ -50,7 +50,8 @@ A person approves, changes or discards it. A failed one can be approved again to
 
 - **Asking**: the Onbox agent asks a teammate for an answer or an approval and keeps the conversation.
 - **Escalating**: the Onbox agent gives the conversation to a person and stops working on it. The person named in the brain comes first, then the inbox's fallback.
-- **Assigning**: a conversation has one assignee, the Onbox agent, a person, or nobody. Assigning it to the Onbox agent lets it handle the conversation.
+- **Assigning**: a conversation has one assignee, the Onbox agent, a person, or nobody. Your agent assigns a person or nobody with `update_conversations`.
+- **Delegating**: to have the Onbox agent handle conversations, delegate them with `delegate_conversations`, with an instruction or none. It is what a person does in the app by mentioning Onbox, and the outcome comes back in My inbox. It counts toward the plan, because Onbox works on it in a run; approving, editing or discarding what Onbox proposed does not.
 - **My inbox**: the conversations that need this person, each with why it is there: a draft to send, an action to approve, an escalation, a request, a customer reply, something the Onbox agent has not handled, a mention by a teammate.
 - **A comment**: an internal note on a conversation. It never reaches the customer.
 
