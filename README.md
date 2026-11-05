@@ -1,8 +1,8 @@
 # Onbox for agents
 
-Onbox, the customer support agent you set up and run from Claude Code, Codex, Claude or ChatGPT.
+Onbox, the always-on agent that answers your customers on every channel, set up and run from Claude Code, Codex, Claude or ChatGPT.
 
-Onbox is an AI agent for customer support: it answers your customers from your support inbox and website chat, and hands a person what it should not decide alone. This plugin lets your own agent set Onbox up and work with it. It connects your agent to the Onbox MCP server at `https://api.onbox.ing/mcp` and adds one skill, `onbox-setup`, which walks through connecting the support mailbox, seeding the Onbox agent's knowledge from your docs, building its brain, and deciding what is waiting on you.
+Onbox is the simplest way for a business to set up an always-on agent that answers its customers on every channel: email, WhatsApp, website chat, Instagram and more. It learns on its own how to handle each kind of request, and hands a person what it should not decide alone. This plugin lets your own agent set Onbox up and run it. It connects your agent to the Onbox MCP server at `https://api.onbox.ing/mcp` and adds one skill, `onbox-setup`, which walks through connecting your channels, seeding the Onbox agent's knowledge from your docs, building its brain, and deciding what is waiting on you.
 
 You need an Onbox account. Sign in when your agent asks you to connect Onbox.
 

@@ -1,7 +1,7 @@
 {
   "name": "onbox",
   "version": "1.1.4",
-  "description": "Set up and run Onbox, the AI support agent for your inbox, from your own agent: connect the support mailbox, build the agent's brain from your history and docs, and decide what is waiting on you.",
+  "description": "Set up and run Onbox from your own agent: an always-on agent that answers your customers on every channel, learns how to handle each request, and leaves to you what it should not decide alone.",
   "author": {
     "name": "Onbox Labs",
     "email": "hello@onbox.ing",
@@ -11,5 +11,5 @@
   "privacyPolicyUrl": "https://www.onbox.ing/privacy-policy",
   "repository": "https://github.com/Onboxing/onbox-for-agents",
   "license": "MIT",
-  "keywords": ["customer-support", "support-inbox", "email", "helpdesk", "ai-agent", "mcp"]
+  "keywords": ["customer-support", "multichannel", "whatsapp", "email", "ai-agent", "mcp"]
 }

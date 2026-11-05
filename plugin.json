@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "onbox",
   "version": "1.1.4",
-  "description": "Set up and run Onbox, the AI support agent for your inbox, from your own agent: connect the support mailbox, build the agent's brain from your history and docs, and decide what is waiting on you.",
+  "description": "Set up and run Onbox from your own agent: an always-on agent that answers your customers on every channel, learns how to handle each request, and leaves to you what it should not decide alone.",
   "author": {
     "name": "Onbox Labs",
     "email": "hello@onbox.ing",
@@ -11,14 +11,14 @@
   "homepage": "https://www.onbox.ing",
   "repository": "https://github.com/Onboxing/onbox-for-agents",
   "license": "MIT",
-  "keywords": ["customer-support", "support-inbox", "email", "helpdesk", "ai-agent"],
+  "keywords": ["customer-support", "multichannel", "whatsapp", "email", "ai-agent"],
   "extensions": {
     "com.openai": {
       "onboardingSkill": "./skills/onbox-setup/SKILL.md",
       "interface": {
         "displayName": "Onbox",
-        "shortDescription": "Your customer support agent",
-        "longDescription": "Onbox answers your customers from your support inbox and website chat, and hands a person what it should not decide alone. With this plugin your agent sets Onbox up for you: it connects your support mailbox, builds the Onbox agent's knowledge from your past conversations and your docs, and finishes the setup. Afterwards it shows what is waiting on you, such as replies to approve, actions held for review and changes to the agent's knowledge, and records each decision you make. Connecting a mailbox happens in your browser, and nothing is sent to a customer without your explicit confirmation. Requires an Onbox account; the agent acts only within the organisation you sign in to.",
+        "shortDescription": "Always-on agent, every channel",
+        "longDescription": "Onbox is the simplest way for a business to set up an always-on agent that answers its customers on every channel: email, WhatsApp, website chat, Instagram and more. It learns on its own how to handle each kind of request, from your past conversations, your docs and every correction you make, and it hands a person what it should not decide alone. This plugin lets your agent run Onbox for you: connect your channels and tools, build the agent's knowledge, finish the setup, then see and decide what is waiting on you. Connecting an account happens in your browser, and nothing is sent to a customer without your confirmation. Requires an Onbox account; the agent acts only within the organisation you sign in to.",
         "developerName": "Onbox Labs",
         "category": "Productivity",
         "capabilities": ["Read", "Write"],
@@ -29,7 +29,7 @@
         "defaultPrompt": [
           "Set up Onbox for our customer support.",
           "What is waiting on me in Onbox?",
-          "Review what the Onbox agent learned about our product."
+          "What did the Onbox agent learn this week?"
         ],
         "composerIcon": "./assets/icon.png",
         "logo": "./assets/icon.png"
@@ -38,7 +38,7 @@
         "test_cases": {
           "positive": [
             {
-              "description": "Shows everything waiting on the signed-in person in the support inbox: drafts to review, actions held for approval and the conversation escalated to them, each with a link to open it in Onbox.",
+              "description": "Shows everything waiting on the signed-in person: replies to review, actions held for approval and the conversation escalated to them, each with a link to open it in Onbox.",
               "prompt": "What is waiting on me in Onbox?",
               "tools_triggered": "list_waiting_on_me",
               "expected_behavior": "Lists the reply drafts written by the Onbox agent, the two pending actions with why each waits, and the escalated conversation about the /de/ pages being down, each with its link. Nothing is changed."
@@ -85,7 +85,7 @@
         }
       },
       "publication": {
-        "release_notes": "1.1.4: Onbox for agents. The plugin sets up Onbox, the customer support agent, from your agent (connecting the support inbox, building the agent's knowledge, finishing setup) and shows what is waiting on you to approve, edit or discard. Includes the onbox-setup skill."
+        "release_notes": "1.1.4: Onbox for agents. Your agent sets up Onbox, the always-on agent that answers your customers on every channel (connecting channels and tools, building the agent's knowledge, finishing setup), then shows what is waiting on you to approve, edit or discard. Includes the onbox-setup skill."
       }
     }
   }

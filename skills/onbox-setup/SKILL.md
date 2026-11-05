@@ -1,6 +1,6 @@
 ---
 name: onbox-setup
-description: Set up Onbox, the AI agent for customer support, and work with it afterwards. Use when the person says "set up Onbox", "customer support", "support inbox", "connect our support mailbox", "website chat", "train the support agent on our docs", "what is waiting on me", "anything to approve in Onbox", or asks to review what the Onbox agent learned. Covers the order of the setup steps, the questions to ask first, the browser steps and how to wait for them, seeding the agent's knowledge from a repository's docs, and deciding pending actions and brain proposals.
+description: Set up Onbox, the always-on agent that answers customers on every channel, and work with it afterwards. Use when the person says "set up Onbox", "customer support", "support inbox", "connect our support mailbox", "connect WhatsApp", "website chat", "train the support agent on our docs", "what is waiting on me", "anything to approve in Onbox", or asks to review what the Onbox agent learned. Covers the order of the setup steps, the questions to ask first, the browser steps and how to wait for them, seeding the agent's knowledge from a repository's docs, and deciding pending actions and brain proposals.
 license: MIT
 compatibility: Needs the Onbox MCP server at https://api.onbox.ing/mcp, connected and signed in. Seeding knowledge from files needs an agent that can read the local repository.
 metadata:
