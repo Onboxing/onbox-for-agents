@@ -2,7 +2,7 @@
 
 Onbox, the always-on agent that answers your customers on every channel, set up and run from Claude Code, Codex, Claude or ChatGPT.
 
-Onbox is the simplest way for a business to set up an always-on agent that answers its customers on every channel: email, WhatsApp, website chat, Instagram and more. It learns on its own how to handle each kind of request, and hands a person what it should not decide alone. This plugin lets your own agent set Onbox up and run it. It connects your agent to the Onbox MCP server at `https://api.onbox.ing/mcp` and adds one skill, `onbox-setup`, which walks through what a correctly set up account is: connecting your channels, inviting your team if you want to, giving the Onbox agent's first build your docs, explaining the plans and what counts, following the build and reviewing what it learned. Afterwards it runs a morning routine: your My inbox, read in one call and decided in batches.
+Onbox is the simplest way for a business to set up an always-on agent that answers its customers on every channel: email, WhatsApp, website chat, Instagram and more. It learns on its own how to handle each kind of request, and hands a person what it should not decide alone. This plugin lets your own agent set Onbox up and run it. It connects your agent to the Onbox MCP server at `https://api.onbox.ing/mcp` and adds one skill, `onbox-setup`, which walks through what a correctly set up account is: connecting your channels, inviting your team if you want to, giving the Onbox agent's first build your docs, explaining the plans and what counts, following the build, reading what the Onbox agent understood and settling what it asks. Afterwards it runs a morning routine: your My inbox, read in one call and decided in batches.
 
 You need an Onbox account. Sign in when your agent asks you to connect Onbox.
 
@@ -55,16 +55,20 @@ Later, ask "go through what is waiting on me in Onbox" each morning: your agent 
 
 ## What is in this repository
 
-| Path                               | For                                           |
-| ---------------------------------- | --------------------------------------------- |
-| `.claude-plugin/plugin.json`       | Claude plugin manifest                        |
-| `.mcp.json`                        | Claude MCP server entry                       |
-| `.claude-plugin/marketplace.json`  | Claude Code marketplace                       |
-| `plugin.json`                      | Portable plugin manifest (ChatGPT and Codex)  |
-| `mcp.json`                         | Portable MCP server entry with OAuth settings |
-| `.agents/plugins/marketplace.json` | Codex marketplace                             |
-| `skills/onbox-setup/`              | The setup skill                               |
-| `assets/`                          | Icon                                          |
+| Path                               | For                                                             |
+| ---------------------------------- | --------------------------------------------------------------- |
+| `.claude-plugin/plugin.json`       | Claude plugin manifest                                          |
+| `.claude-plugin/marketplace.json`  | Claude Code marketplace                                         |
+| `.codex-plugin/plugin.json`        | Codex plugin manifest                                           |
+| `.agents/plugins/marketplace.json` | Codex marketplace                                               |
+| `.mcp.json`                        | MCP server entry for Claude Code and Codex                      |
+| `chatgpt/plugin.json`              | Portable plugin manifest, the root of the ChatGPT package       |
+| `chatgpt/mcp.json`                 | Portable MCP server entry with the OAuth settings ChatGPT reads |
+| `chatgpt/package.sh`               | Builds the ZIP submitted to the ChatGPT plugin directory        |
+| `skills/onbox-setup/`              | The setup skill                                                 |
+| `assets/`                          | Icon                                                            |
+
+The portable layout (a root `plugin.json` with the Agent Plugins schema and a `mcp.json`) is what ChatGPT's directory takes, but Codex 0.166 and 0.167 read that `mcp.json` too and drop a server whose entry carries the `extensions` OAuth block ([openai/codex#53658](https://github.com/openai/codex/issues/53658)). Codex also caps the tools of a portable plugin at 64 KB of tool definitions. So the repository root is the Codex and Claude Code layout, and `chatgpt/package.sh` assembles the portable package for the ChatGPT submission.
 
 ## Support
 
