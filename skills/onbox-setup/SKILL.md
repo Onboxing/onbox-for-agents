@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Onbox MCP server at https://api.onbox.ing/mcp, connected and signed in. Giving the build a repository's docs needs an agent that can read the local repository.
 metadata:
   author: Onbox Labs
-  version: 1.6.0
+  version: 1.7.0
 ---
 
 # Setting up Onbox
@@ -212,6 +212,7 @@ When the person asks what waits on them, or once the first conversations arrive,
 2. **Summarise** in one or two short paragraphs, numbers first, in this order, leaving out what is zero:
    - **Quick to clear:** drafts ready to send (`byReason.draft`), actions to approve (`pending_action`), invitations to answer.
    - **Needs their judgement:** Onbox's requests and escalations, mentions, failed sends and runs (`failed`), customers waiting over a day (`waitingOverADay`, the longest since `oldestWaitingSince`), customers who wrote again (`followedUp`). Name `important` only when it singles out fewer than all that wait.
+   - **Waiting on the team,** from `summary.sharedInboxes` when present: the customers waiting unassigned in the person's shared inboxes, outside their My inbox, per inbox with its address and the longest wait ("9 customers waiting in support@acme.com, the oldest since Monday"), then the oldest few by customer and subject, with their `webUrl`. Nobody has taken these, so always say them, even when My inbox is clear; when `waiting` is 0, say the shared inboxes are clear. To go through them, read the `oldest` ids with `get_conversations`, then assign each to a person or delegate it to Onbox as the person decides.
    - **What Onbox did on its own** since `handledByOnbox.since`: replies sent, conversations archived, in one sentence.
    - **What is broken,** from `get_account_status`: an inbox `NEEDS_AUTH` or `DISCONNECTED` to reconnect, a stuck build; a brain still building means Onbox is still learning, so it drafts more than it settles. For an admin, the brain proposals waiting (`openBrainProposals`).
    - Then the link, `[Open your inbox](<summary.webUrl>)`, and one question offering the quickest batch: "Want to go through the 4 drafts?"
@@ -221,7 +222,7 @@ When the person asks what waits on them, or once the first conversations arrive,
 3. **Go through a batch when they say yes.** Call `list_my_inbox` with that batch's `types`, read the conversations with `get_conversations` in one call, and show each one in a line with its `webUrl`. For an action, show what it will run: recipient, first line, any amount, and why it waits. Then act on the person's decisions, each kind in one call:
    - `approve_pending_actions` for the actions the person has seen and confirmed, each with the version you showed. Tell the person each result's `outcome` as returned: it says whether the action ran, had already run, or failed and why. An action that changed since comes back in `errors`: show the new version and ask again.
    - `discard_pending_actions` for the actions they reject.
-   - `update_draft` to change a draft, or `create_draft` with `mode: "reply"` to answer a conversation yourself. A draft waits for a person to send it: read it with `get_draft` and show the person its recipients and text; once they said to send it, `send_draft` with the `version` and the `to`, `cc` and `bcc` you showed sends it, a reply, forward or new email alike (a changed draft, other recipients or a policy refusal come back as an error that says what to do). `send_draft` queues the email: tell the person it is queued, never that it went out. A minute later, read it with `get_draft`: `SENT` means it went out, so say so; back to `DRAFT` or `FAILED` means it did not, so tell them and offer to try again. Never mention an undo window shorter than a minute.
+   - `update_draft` to change a draft, or `create_draft` with `mode: "reply"` to answer a conversation yourself. Each time you write or change a draft, show the person its recipients and text and ask whether to send it now or change it, as the result's `next` says; never end on a link to review it in Onbox. A draft that waits on someone else is not theirs to send: say who it waits on. To send a draft you did not just write, read it with `get_draft` and show the person its recipients and text; once they said to send it, `send_draft` with the `version` and the `to`, `cc` and `bcc` you showed sends it, a reply, forward or new email alike (a changed draft, other recipients or a policy refusal come back as an error that says what to do). `send_draft` queues the email: tell the person it is queued, never that it went out. A minute later, read it with `get_draft`: `SENT` means it went out, so say so; back to `DRAFT` or `FAILED` means it did not, so tell them and offer to try again. Never mention an undo window shorter than a minute.
    - `update_conversations` to archive, snooze or assign conversations to a person.
    - `delegate_conversations` to hand a conversation to Onbox, optionally with an instruction.
    - `respond_to_invitation` to answer a calendar invitation (accepted, declined or tentative) as the person decided. It notifies the organiser; calling it again changes the answer.

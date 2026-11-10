@@ -53,7 +53,7 @@ Ask your agent:
 
 > Set up Onbox for our customer support: connect our support mailbox and website chat, seed the brain from this repo's docs, and tell me what is still missing.
 
-Later, ask "go through what is waiting on me in Onbox" each morning: your agent sums up your My inbox in a few lines (`list_my_inbox`): drafts and actions ready to approve, what needs your judgement, what Onbox did on its own, with a link to the inbox. When you say go, it reads the conversations (`get_conversations`) and approves (`approve_pending_actions`), discards, edits or archives only what you decide. Admins also hear how many brain proposals wait.
+Later, ask "go through what is waiting on me in Onbox" each morning: your agent sums up your My inbox in a few lines (`list_my_inbox`): drafts and actions ready to approve, what needs your judgement, what Onbox did on its own, the customers nobody has taken yet in your shared inboxes, with a link to the inbox. When you say go, it reads the conversations (`get_conversations`) and approves (`approve_pending_actions`), sends (`send_draft`), discards, edits or archives only what you decide. After it writes or changes a draft, it shows you the draft and asks whether to send it. Admins also hear how many brain proposals wait.
 
 ## What is in this repository
 
