@@ -66,11 +66,10 @@ Later, ask "go through what is waiting on me in Onbox" each morning: your agent 
 | `.mcp.json`                        | MCP server entry for Claude Code and Codex                      |
 | `chatgpt/plugin.json`              | Portable plugin manifest, the root of the ChatGPT package       |
 | `chatgpt/mcp.json`                 | Portable MCP server entry with the OAuth settings ChatGPT reads |
-| `chatgpt/package.sh`               | Builds the ZIP submitted to the ChatGPT plugin directory        |
 | `skills/onbox-setup/`              | The setup skill                                                 |
 | `assets/`                          | Icon                                                            |
 
-The portable layout (a root `plugin.json` with the Agent Plugins schema and a `mcp.json`) is what ChatGPT's directory takes, but Codex 0.166 and 0.167 read that `mcp.json` too and drop a server whose entry carries the `extensions` OAuth block ([openai/codex#53658](https://github.com/openai/codex/issues/53658)). Codex also caps the tools of a portable plugin at 64 KB of tool definitions. So the repository root is the Codex and Claude Code layout, and `chatgpt/package.sh` assembles the portable package for the ChatGPT submission.
+The portable layout (a root `plugin.json` with the Agent Plugins schema and a `mcp.json`) is what ChatGPT's directory takes, but Codex 0.166 and 0.167 read that `mcp.json` too and drop a server whose entry carries the `extensions` OAuth block ([openai/codex#53658](https://github.com/openai/codex/issues/53658)). Codex also caps the tools of a portable plugin at 64 KB of tool definitions. So the repository root is the Codex and Claude Code layout, and a script in the Onbox repository assembles the portable package for the ChatGPT submission from these files.
 
 ## Support
 
