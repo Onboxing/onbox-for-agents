@@ -1,11 +1,11 @@
 ---
 name: onbox-setup
-description: Set up Onbox, the always-on agent that answers customers on every channel, and run it afterwards. Use when the person says "set up Onbox", "customer support", "connect our support mailbox", "website chat", "train the support agent on our docs", "which plan do I need", "what is waiting on me", "my inbox", "morning review", "anything to approve in Onbox", "let Onbox send on its own", or asks to review what the Onbox agent learned. Covers what a correctly set up account is, finding out before asking, the order of the setup steps, the browser steps and how to wait for them, giving the build the product's docs, explaining the plans and what counts, following the build, and the morning routine of deciding what waits on the person in batches.
+description: Set up Onbox, the always-on agent that answers customers on every channel, and run it afterwards. Use when the person says "set up Onbox", "customer support", "connect our support mailbox", "website chat", "train the support agent on our docs", "which plan do I need", "what is waiting on me", "my inbox", "morning review", "anything to approve in Onbox", "let Onbox send on its own", or asks to review what the Onbox agent learned. Covers what a correctly set up account is, finding out before asking, the order of the setup steps, the browser steps and how to wait for them, giving the build the product's docs, explaining the plans and what counts, following the build, and the morning routine, a short summary of what waits on the person and then deciding in batches.
 license: MIT
 compatibility: Needs the Onbox MCP server at https://api.onbox.ing/mcp, connected and signed in. Giving the build a repository's docs needs an agent that can read the local repository.
 metadata:
   author: Onbox Labs
-  version: 1.5.8
+  version: 1.6.0
 ---
 
 # Setting up Onbox
@@ -206,11 +206,19 @@ Show the person each change before you write it, and write all of them in one `w
 
 ## 9. The morning routine
 
-When the person asks what waits on them, or once the first conversations arrive:
+When the person asks what waits on them, or once the first conversations arrive, give them a short summary first, never a list of emails.
 
-1. **List.** Call `list_my_inbox` with the filters the person wants (by `types` or `inboxIds`). Follow `nextCursor` while the person wants more.
-2. **Read.** Call `get_conversations` with every returned conversation id, in one call.
-3. **Show, then decide in batches.** Group the items by what they need (actions to approve, drafts, invitations to answer, escalations, requests, mentions), one line each with its `webUrl`. For an action, show what it will run: recipient, first line, any amount, and why it waits. Then act on the person's decisions, each kind in one call:
+1. **Gather.** Call `list_my_inbox` with no filters (pass `since` as the time of your last summary when you know it) and `get_account_status`, together. The first page's `summary` counts the whole list; write from it, not from the items.
+2. **Summarise** in one or two short paragraphs, numbers first, in this order, leaving out what is zero:
+   - **Quick to clear:** drafts ready to send (`byReason.draft`), actions to approve (`pending_action`), invitations to answer.
+   - **Needs their judgement:** Onbox's requests and escalations, mentions, failed sends and runs (`failed`), customers waiting over a day (`waitingOverADay`, the longest since `oldestWaitingSince`), customers who wrote again (`followedUp`). Name `important` only when it singles out fewer than all that wait.
+   - **What Onbox did on its own** since `handledByOnbox.since`: replies sent, conversations archived, in one sentence.
+   - **What is broken,** from `get_account_status`: an inbox `NEEDS_AUTH` or `DISCONNECTED` to reconnect, a stuck build; a brain still building means Onbox is still learning, so it drafts more than it settles. For an admin, the brain proposals waiting (`openBrainProposals`).
+   - Then the link, `[Open your inbox](<summary.webUrl>)`, and one question offering the quickest batch: "Want to go through the 4 drafts?"
+
+   Plain words and real numbers only: never invent urgency or a reason the data does not give, and say times relative to now ("since Monday"). When nothing waits, say so in one sentence with what Onbox did. With hundreds, keep the same shape and offer the biggest quick batch, or one inbox (`inboxIds`). Never list conversations unless the person asks.
+
+3. **Go through a batch when they say yes.** Call `list_my_inbox` with that batch's `types`, read the conversations with `get_conversations` in one call, and show each one in a line with its `webUrl`. For an action, show what it will run: recipient, first line, any amount, and why it waits. Then act on the person's decisions, each kind in one call:
    - `approve_pending_actions` for the actions the person has seen and confirmed, each with the version you showed. Tell the person each result's `outcome` as returned: it says whether the action ran, had already run, or failed and why. An action that changed since comes back in `errors`: show the new version and ask again.
    - `discard_pending_actions` for the actions they reject.
    - `update_draft` to change a draft, or `create_draft` with `mode: "reply"` to answer a conversation yourself. A draft waits for a person to send it: read it with `get_draft` and show the person its recipients and text; once they said to send it, `send_draft` with the `version` and the `to`, `cc` and `bcc` you showed sends it, a reply, forward or new email alike (a changed draft, other recipients or a policy refusal come back as an error that says what to do). `send_draft` queues the email: tell the person it is queued, never that it went out. A minute later, read it with `get_draft`: `SENT` means it went out, so say so; back to `DRAFT` or `FAILED` means it did not, so tell them and offer to try again. Never mention an undo window shorter than a minute.
@@ -218,7 +226,7 @@ When the person asks what waits on them, or once the first conversations arrive:
    - `delegate_conversations` to hand a conversation to Onbox, optionally with an instruction.
    - `respond_to_invitation` to answer a calendar invitation (accepted, declined or tentative) as the person decided. It notifies the organiser; calling it again changes the answer.
    - `create_comment` to answer a teammate's mention or the Onbox agent's request. For a request, look in the local repository and its docs first, as in section 8, and reply with what you found or with the person's answer. A comment stays inside Onbox.
-4. **Brain proposals, for an admin.** When `openBrainProposals` is above zero, end with one line saying how many wait. If the person wants to go through them, call `list_brain_proposals`, and for each one read its source conversation with `get_conversations` before you recommend a decision. Then call `accept_brain_proposals` or `decline_brain_proposals` with the ones they decided.
+4. **Brain proposals, for an admin.** If the person wants to go through them, call `list_brain_proposals`, and for each one read its source conversation with `get_conversations` before you recommend a decision. Then call `accept_brain_proposals` or `decline_brain_proposals` with the ones they decided.
 
 ## Sending on its own, only when asked
 

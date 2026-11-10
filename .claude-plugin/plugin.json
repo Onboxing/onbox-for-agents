@@ -1,6 +1,6 @@
 {
   "name": "onbox",
-  "version": "1.5.8",
+  "version": "1.6.0",
   "description": "Set up and run Onbox from your own agent: an always-on agent that answers your customers on every channel, learns how to handle each request, and leaves to you what it should not decide alone.",
   "author": {
     "name": "Onbox Labs",

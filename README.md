@@ -4,7 +4,7 @@ Onbox, the always-on agent that answers your customers on every channel, set up 
 
 Onbox is the simplest way for a business to set up an always-on agent that answers its customers on every channel: email, WhatsApp, website chat, Instagram and more. It learns on its own how to handle each kind of request, and hands a person what it should not decide alone. This plugin lets your own agent set Onbox up and run it. It connects your agent to the Onbox MCP server at `https://api.onbox.ing/mcp` and adds one skill, `onbox-setup`, which walks through what a correctly set up account is: connecting your channels, inviting your team if you want to, giving the Onbox agent's first build your docs, explaining the plans and what counts, following the build, reading what the Onbox agent understood and settling what it asks. Afterwards it runs a morning routine: your My inbox, read in one call and decided in batches.
 
-You need an Onbox account. Sign in when your agent asks you to connect Onbox.
+You need an Onbox account. Sign in right after installing, or when your agent asks you to connect Onbox.
 
 ## Install
 
@@ -12,6 +12,7 @@ You need an Onbox account. Sign in when your agent asks you to connect Onbox.
 
 ```bash
 claude plugin install onbox --marketplace Onboxing/onbox-for-agents
+claude mcp login plugin:onbox:onbox
 ```
 
 On an older Claude Code, run `/plugin marketplace add Onboxing/onbox-for-agents`, then `/plugin install onbox@onbox`.
@@ -20,6 +21,7 @@ On an older Claude Code, run `/plugin marketplace add Onboxing/onbox-for-agents`
 
 ```bash
 codex plugin marketplace add Onboxing/onbox-for-agents && codex plugin add onbox@onbox
+codex mcp login onbox
 ```
 
 `codex plugin add` needs the marketplace name, which is `onbox` here; `codex plugin add onbox --marketplace onbox` is the same.
@@ -51,7 +53,7 @@ Ask your agent:
 
 > Set up Onbox for our customer support: connect our support mailbox and website chat, seed the brain from this repo's docs, and tell me what is still missing.
 
-Later, ask "go through what is waiting on me in Onbox" each morning: your agent lists your My inbox (`list_my_inbox`), reads the conversations (`get_conversations`), and approves (`approve_pending_actions`), discards, edits or archives only what you decide. Admins also hear how many brain proposals wait.
+Later, ask "go through what is waiting on me in Onbox" each morning: your agent sums up your My inbox in a few lines (`list_my_inbox`): drafts and actions ready to approve, what needs your judgement, what Onbox did on its own, with a link to the inbox. When you say go, it reads the conversations (`get_conversations`) and approves (`approve_pending_actions`), discards, edits or archives only what you decide. Admins also hear how many brain proposals wait.
 
 ## What is in this repository
 
