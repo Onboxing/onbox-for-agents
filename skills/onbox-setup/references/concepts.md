@@ -30,7 +30,7 @@ What it holds:
 
 The difference in one line each: a **skill** is how to do something, a **memory** is something that is true or was learned, and a **policy** is a rule about what is allowed.
 
-The brain build reads the inbox history and writes skills and memories. Admins write to the org brain directly; a change from someone else becomes a **brain proposal** that an admin accepts or declines.
+The brain build reads the inbox history and writes skills and memories. Once the setup is complete, a change to the org brain is an **Onbox improvement** (a brain proposal): one an admin stated themselves applies at once, and any other waits for an admin to accept or decline it.
 
 ## Pending actions
 

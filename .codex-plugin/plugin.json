@@ -1,6 +1,6 @@
 {
   "name": "onbox",
-  "version": "1.7.0",
+  "version": "1.11.0",
   "description": "Set up and run Onbox from your own agent: an always-on agent that answers your customers on every channel, learns how to handle each request, and leaves to you what it should not decide alone.",
   "keywords": ["customer-support", "multichannel", "whatsapp", "email", "ai-agent"],
   "skills": "./skills/",
@@ -18,7 +18,7 @@
     "defaultPrompt": [
       "Set up Onbox for our customer support.",
       "Go through what is waiting on me in Onbox.",
-      "Are there brain proposals to review in Onbox?"
+      "Prepare replies for the customers still waiting."
     ],
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/icon.png"
