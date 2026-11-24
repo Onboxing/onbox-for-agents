@@ -101,4 +101,14 @@ Org scope only, and an owner or admin decides it. Every message Onbox sends is c
 
 ## Tool policy: `policies/tools.md`
 
-Org scope only. It says which tool calls Onbox may make alone (`## Allowed`), never (`## Forbidden`), or only under a condition (`## Required`), with `### <integration>` or `### <integration>__<tool>` to scope rules. Read it before you change it, and write a rule so it can be judged from one call alone.
+Org scope only. It says which tool calls Onbox may make alone (`## Allowed`), never (`## Forbidden`), or only under a condition (`## Required`), with `### <integration>` or `### <integration>__<tool>` to scope rules. Read it before you change it, and write a rule so it can be judged from one call alone: two careful readers who see only the call and the customer must give the same answer.
+
+- Each condition is a fact the call or the customer's record shows, not a judgement: "members with no unpaid invoice", not "members in good standing".
+- Each amount names its currency; when the company bills in several, give a cap per currency or say what happens in the others.
+- Each other limit says its unit and window (per item or per order, per month) and whether it caps the change or the total; a duration is in days or an end date, never months, and says which date it counts from when two could apply.
+- Anything the call creates that is worth money (coupon, voucher, credit) has its value or cap.
+- When the tool handles several kinds of record and the rule names one, write a rule for each other kind.
+- An exception says what is excluded and what happens instead; a field is named as the tool's data names it; a pronoun or a condition after a list points to one thing only.
+- A prohibition names its tool when another section allows the same kind of thing: "No other Shopify gift cards.", not "No other gift cards."
+
+When the person's words leave one of these open, ask them and propose a concrete wording; never fill the gap yourself. When a rule is refused, rewrite it or ask; never get it through by dropping a condition or raising a limit.

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Onbox MCP server at https://api.onbox.ing/mcp, connected and signed in.
 metadata:
   author: Onbox Labs
-  version: 1.11.0
+  version: 1.11.1
 ---
 
 # Working with Onbox

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Onbox MCP server at https://api.onbox.ing/mcp, connected and signed in. Works without local files; with a local repository, it also gives the brain build the product's docs from it.
 metadata:
   author: Onbox Labs
-  version: 1.11.0
+  version: 1.11.1
 ---
 
 # Setting up Onbox
