@@ -82,6 +82,23 @@ enabled: true
 
 `timezone` is a real IANA zone, and exactly one of `cron` (quoted, five fields) or `run_at` (a quoted future ISO time). Its actions are short phrases Onbox follows in order.
 
+**On a webhook event:**
+
+```markdown
+---
+trigger: on_webhook
+source: linear
+events: [Issue.update, Comment.create]
+resource: linear-issue
+resource_id: [data.issueId, data.id]
+actions:
+  - When the bug is confirmed or fixed, tell the customer
+enabled: true
+---
+```
+
+`source` is a webhook endpoint's slug, `events` the event types it accepts, `resource` a resource definition's slug, and `resource_id` dot paths into the payload; the first path that resolves is the id of the resource a conversation waits on. Its actions are short phrases, as on a schedule. A missing endpoint or resource definition is accepted, and the trigger waits for it. Webhook events do not start runs yet: the file is stored and listed, and starts nothing until event dispatch ships.
+
 Pause a trigger with `enabled: false`; delete the file to remove it.
 
 ## Communication policy: `policies/communication.md`
@@ -105,10 +122,12 @@ Org scope only. It says which tool calls Onbox may make alone (`## Allowed`), ne
 
 - Each condition is a fact the call or the customer's record shows, not a judgement: "members with no unpaid invoice", not "members in good standing".
 - Each amount names its currency; when the company bills in several, give a cap per currency or say what happens in the others.
-- Each other limit says its unit and window (per item or per order, per month) and whether it caps the change or the total; a duration is in days or an end date, never months, and says which date it counts from when two could apply.
+- Each other limit says what it counts (per item or per order when one call covers several) and whether it caps the change or the total; a duration is in days or an end date, never months, and says which date it counts from when two could apply.
+- A count across calls ("at most twice") says per what: per booking or per customer, per month or ever. A cap on one call ("refunds up to EUR 50") is complete without a period.
 - Anything the call creates that is worth money (coupon, voucher, credit) has its value or cap.
 - When the tool handles several kinds of record and the rule names one, write a rule for each other kind.
-- An exception says what is excluded and what happens instead; a field is named as the tool's data names it; a pronoun or a condition after a list points to one thing only.
+- An exception says what is excluded and what happens instead; a field is named as the tool's data names it; a pronoun points to one thing only.
+- When a limit or condition follows several actions, ask which actions it covers, then write one rule per action.
 - A prohibition names its tool when another section allows the same kind of thing: "No other Shopify gift cards.", not "No other gift cards."
 
-When the person's words leave one of these open, ask them and propose a concrete wording; never fill the gap yourself. When a rule is refused, rewrite it or ask; never get it through by dropping a condition or raising a limit.
+When the person's words leave one of these open, ask them and propose a concrete wording; never fill the gap yourself. Ask only what their words leave open: apart from the other kinds of record a tool handles, a case they did not mention waits for a person and is not a gap. When a rule is refused, rewrite it or ask; never get it through by dropping a condition or raising a limit.

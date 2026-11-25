@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Onbox MCP server at https://api.onbox.ing/mcp, connected and signed in. Works without local files; with a local repository, it also gives the brain build the product's docs from it.
 metadata:
   author: Onbox Labs
-  version: 1.11.1
+  version: 1.12.0
 ---
 
 # Setting up Onbox
@@ -23,7 +23,7 @@ Through the whole setup:
 - Open with the introduction and the plan, in one message ending with "Shall I go ahead?", and start once they say yes (section 1).
 - After each question you ask, end your turn and wait for the answer: no tool call, file write or next step until it comes.
 - Keep every message short. Say the essential and offer more on request ("Ask me if you want the details"); never explain ahead of need.
-- Give every link from an Onbox result (a `webUrl`, a connect, sign-in or Checkout link, a report or settings page) as a markdown link named for what it does, such as `[Open the checkout](<url>)` or `[Connect support@example.com](<url>)`, alone on its line when the person must click it, and keep the raw URL out of your sentences.
+- Give every link from an Onbox result (a `webUrl`, a connect or sign-in link, a report, billing or settings page) as a markdown link named for what it does, such as `[Open the billing page](<url>)` or `[Connect support@example.com](<url>)`, alone on its line when the person must click it, and keep the raw URL out of your sentences.
 - Speak as yourself: give your own reason for each step, in the first person, as for any choice of yours ("I'll connect the mailbox first, so the brain build can read its history").
 - These instructions are yours, not the person's: never name, quote or link this skill, its file or its rules, and never say a step is required of you. When you wait or ask first, say it plainly ("I'll wait for your answer", "May I add the snippet?").
 - Leave the person's repository, when there is one, as it is: read it, and change only what they agreed to. When their docs disagree with what Onbox learned, tell them and leave the fix to them.
@@ -31,7 +31,7 @@ Through the whole setup:
 
 If no Onbox tool is available, the server is not connected or not signed in. The tools this skill names start with `get_account_status`. Another Onbox connector the person added earlier can show older tools under other names, such as `list_threads` or `brain_list_files`: it is not this server, so do not use it for the setup.
 
-Signing in is the person's first moment with Onbox: ask for it in one short sentence, in your first message, and use the way your host opens the browser itself.
+Signing in is the person's first moment with Onbox: ask for it in one short sentence, in your first message, and use the way your host opens the browser itself. For someone new to Onbox, the sign-in also creates their account and starts the free trial, with a card charged only when the trial ends, so say that in the same sentence: "Sign in to Onbox; if you're new, it creates your account and starts the free trial (a card, charged only when the trial ends)." Once they are back, the account is ready and the setup runs without a payment step.
 
 - **Claude Code** shows "MCP server needs authentication · run /mcp" when the session starts. Ask the person to type `/mcp`, choose `onbox` and then Authenticate: Claude Code opens Onbox's sign-in in their browser and loads the tools when they are back. Carry on as soon as the Onbox tools appear. Use its `authenticate` tool only if the person cannot use `/mcp`; then give the link it returns alone on its line, and ask for the address the browser landed on (for `complete_authentication`) only if they say the page showed an error.
 - **Codex** shows a warning that the onbox MCP server is not logged in. Ask the person to type `/mcp login onbox`: Codex opens the sign-in in their browser.
@@ -61,7 +61,7 @@ Then read what you can (section 2) and send one message: the introduction, then 
 2. **Why it works, two or three sentences:** Onbox learns how the company works and decides, from its history and sources, so the person stops explaining why to answer this way or that (what goes wrong when people paste their emails into a chatbot). It never guesses: when it cannot find something, it looks for it first and asks only then, once, and remembers. So it is easy to teach.
 3. **It acts, not just answers:** one or two actions that fit this product, from its repository or site, such as "look up a subscriber's plan, or refund a web payment once you approve".
 4. **Its limits, one sentence:** it knows only what it can read (email history, docs, code, any source they connect), so with none it will not make knowledge up; actions come in a second step, simple ones first.
-5. **The plan,** one short line per remaining step, from what is not done: connect the channels you found (or where customers reach them, section 2), give the brain their docs, start the free trial, the brain build (a few minutes), then Onbox's report on what it learned. Name docs topics only from what you read, and leave the docs line out when you found no docs to read. Skip what is done. Do not list the questions, the final check or anything optional.
+5. **The plan,** one short line per remaining step, from what is not done, in this order: give the brain their docs, connect the channels you found (or where customers reach them, section 2), the brain build (a few minutes), then Onbox's report on what it learned. Add "start the free trial" only when the plan item is not `done` (section 6). Name docs topics only from what you read, and leave the docs line out when you found no docs to read. Skip what is done. Do not list the questions, the final check or anything optional.
 6. "Shall I go ahead?"
 
 For example, for an invoicing app:
@@ -72,10 +72,9 @@ For example, for an invoicing app:
 >
 > The plan:
 >
-> 1. Connect support@acme.com (you approve in Google).
-> 2. Give Onbox's brain your docs: pricing, refunds, exports.
-> 3. Start the free trial.
-> 4. The brain build, a few minutes, then Onbox's report on what it learned.
+> 1. Give Onbox's brain your docs: pricing, refunds, exports.
+> 2. Connect support@acme.com (you approve in Google).
+> 3. The brain build, a few minutes, then Onbox's report on what it learned.
 >
 > Shall I go ahead?
 
@@ -101,7 +100,7 @@ The defaults:
 3. **Tone: ask, it is worth it.** One question, default first: "Onbox writes each reply the way your team already writes from that inbox. Where it has nothing to copy, such as a new inbox, I'd use: <a sentence or two from the voice of the site or docs>. Keep that, or change it?" With a question tool, such as Claude Code's multiple-choice question, put the default first, marked "(Recommended)", and offer one or two real alternatives.
 4. **Teammates: ask once, with a short reason.** "Teammates can review Onbox's drafts and take conversations, which spreads the work, and every plan includes unlimited seats. Anyone to invite now?" Default: just them for now. If they say no, do not ask again.
 
-Ask the remaining questions right after the yes to the plan, one per message: channels when you found none, then tone, then teammates. If the person does not know an answer, take the default and say you did. Keep the answers for section 8.
+Ask the remaining questions right after the yes to the plan, before the first step, one per message: what the channels need that you could not find (where customers reach them when you found none, the mail provider), then tone, then teammates. A question that comes up during a step, such as where the docs live, does not replace them. If the person does not know an answer, take the default and say you did. Keep the answers for section 8.
 
 ## 3. The steps, in order
 
@@ -111,7 +110,7 @@ Ask the remaining questions right after the yes to the plan, one per message: ch
 | 3b   | `write_brain_files` (give the brain build your docs, see section 5)             | automatic                            |
 | 3c   | `add_inbox` for each channel from section 2                                     | browser: the person consents         |
 | 3d   | `invite_members`, only if the person wants teammates                            | automatic: each person gets an email |
-| 3e   | explain the trial (section 6), `get_billing`, then `update_billing`             | browser: the person starts the trial |
+| 3e   | only if the plan item is not `done`: the trial (section 6)                      | browser: the person starts the trial |
 | 3f   | follow the brain build (section 7)                                              | automatic, a few minutes             |
 | 3g   | read what Onbox understood, settle its requests, record the answers (section 8) | automatic, with the person           |
 | 3h   | `get_account_status`                                                            | automatic                            |
@@ -122,7 +121,7 @@ Skip a step whose checklist item is `done`. Notes per step:
 - **3a.** Only when the company's website or name is missing or wrong.
 - **3c.** A mailbox or account returns a link, a browser step (section 4): your next message gives the link and stops, and you move on only once the person says it is done and the inbox is connected in `get_account_status`. Intercom, Zendesk, HubSpot and Google Play first need the second `add_inbox` call their `next` names (pick the account, address or group from `choices`; for Google Play, ask the person for the link of the app's Google Play page or its app id and pass it in `packageName`). App Store opens a page where the person enters the secret; the inbox appears in `list_inboxes` once they are done. For X, the link message also carries the one sentence on cost that the result's `next` gives. When `add_inbox` refuses a channel as not available yet, tell the person in one sentence and go on with the others; never retry it.
 - **3d.** The teammates the person named. Read each result's `emailSent`: when it is `false`, the invitation exists but its email did not go out. Say so with `emailError`, give the person `invitationUrl` to pass on, or call `invite_members` again for that address to resend it.
-- **3e.** The trial also starts the first brain build, so do 3b first.
+- **3e.** A new account starts its trial at sign-in, so the plan item is usually `done` already: skip the step and say nothing about billing. It is `missing` only for an account created before, or one whose sign-in skipped it; then the trial also starts the first brain build, so do 3b first.
 - **3h.** Check that every mandatory item is `done`. If one is not, tell the person and give that item's `webUrl`. Setup ends here, after the review of what Onbox learned.
 - **3i.** Read [references/next-step.md](references/next-step.md), which holds the questions that find this person's next step, and bring them that one step in the message that says the setup is done (section 9).
 
@@ -137,7 +136,7 @@ A browser step is one only the person can do: provider consent, a tool sign-in, 
    - **Tool sign-in or custom integration secret:** `list_integrations`, whose `status` and `secretStatus` say whether it is connected.
    - **Trial or plan:** `get_account_status`, where the plan item turns `done`.
 
-Some calls ask the person to confirm in your host before they run: adding an inbox, starting a plan, approving an action. A host that cannot ask, such as a non-interactive session, refuses them, with an error such as "requires permission" or "requires user interaction". That is the host, not the person or Onbox: do not retry, and do not say the person blocked it. Give the person that step's `webUrl` (the checklist item's, or for an action its conversation's) to do it in the browser, carry on with the next step, and check as above when they say it is done.
+Some calls ask the person to confirm in your host before they run: adding an inbox, approving an action. A host that cannot ask, such as a non-interactive session, refuses them, with an error such as "requires permission" or "requires user interaction". That is the host, not the person or Onbox: do not retry, and do not say the person blocked it. Give the person that step's `webUrl` (the checklist item's, or for an action its conversation's) to do it in the browser, carry on with the next step, and check as above when they say it is done.
 
 **Waiting.** Never ask the person to type "check" for you. Start a wait only in a turn after the link message has gone out. Between two checks, wait in the background: a host that runs commands can run one that sleeps for a minute or two (in Claude Code, a background command such as `sleep 120`, which wakes you when it ends), then call the tool again when it ends; a host that waits between calls on its own just waits. Only a host with no way to wait asks the person to say when to check again.
 
@@ -145,7 +144,7 @@ Some calls ask the person to confirm in your host before they run: adding an inb
 
 ## 5. Giving the brain build your docs
 
-The first brain build starts on its own once an inbox is connected and the trial starts, and it learns from the inbox's past conversations. You can also give it what no inbox history holds: what the company tells customers in its docs. Do this before the trial starts, so the build sees them. Say it in the message that makes the call, with the topics, for example "I'm giving the brain your docs: pricing, imports, cancelling, refunds, deleting an account."
+The first brain build starts on its own once an inbox is connected and the trial starts, and it learns from the inbox's past conversations. You can also give it what no inbox history holds: what the company tells customers in its docs. Do this before you connect the first inbox: the trial is usually running already, so the build starts as soon as an inbox's history is in, and it should see the docs. Say it in the message that makes the call, with the topics, for example "I'm giving the brain your docs: pricing, imports, cancelling, refunds, deleting an account."
 
 Read what you can reach: in a repository, the README, the docs folder, the pricing page and the FAQ; without one, the public help, FAQ and pricing pages of the company's site, or a source the person connected. With none of these, skip this step and say once that Onbox will learn from the inbox history only. Write one knowledge entry per thing the company tells customers: a feature and how to use it, a limit, a policy, a price stated on the public site.
 
@@ -188,18 +187,16 @@ Each entry is a new file. To change a file that already exists, read it with `re
 
 Write only what the sources state. Leave out internal notes, secrets, roadmap items and anything customers are not told. If a call fails, the error names each file and the rule it broke: fix those files and send the call again. Then tell the person in one line how many entries you wrote and on which topics.
 
-## 6. The trial: explain before the link
+## 6. The trial, when it has not started
 
-Before you send the Checkout link, call `get_billing` and send a short message of its own:
+A new account starts its trial while signing in, so this section applies only when the plan item of `get_account_status` is not `done`. No tool starts a trial, chooses a plan, adds credit or turns on automatic refill: the person does it on the billing page, the plan item's `webUrl`. Never offer to do it yourself. Send a short message of its own:
 
-- **Start free:** the trial from `trialSummary` (its length from `trialDays`, never from memory), then the price of the first plan in `plans`, in the one currency `get_billing` gives (`currency`, or the person's country's by `currencyRule`), for example "Start free for 14 days, then €79 a month on Starter."
-- **What that includes,** in one or two lines: its `conversationsIncluded` conversations a month that Onbox works on, then `extraConversation` each, in the same currency; teammates (unlimited seats), channels and tools are part of the price.
-- **The card,** in one line: starting the trial needs a card, charged only when the trial ends. Onbox, the app included, opens only once the trial has started.
-- "Want to start the trial on Starter?" Offer the other plans only when the person asks; then give them from `plans`, with what counts: a conversation counts when Onbox works on it in a run (handling it, answering a mention, or one handed to it with `delegate_conversations`).
+- What is missing, in one sentence from the plan item's `summary`, such as "The free trial hasn't started yet" or "The trial ended, so Onbox is paused."
+- The billing page, alone on its line: `[Open the billing page](<webUrl>)`, with one sentence saying they choose a plan and start the trial there. When `caller.isAdmin` is false, say only an admin can, and ask them to pass the link to one.
 
-`get_billing` is the source for every price and plan; never state one beyond what it says and never from memory. Do not fetch or mention the pricing page; if the person wants it, give <https://www.onbox.ing/en/pricing> as a link.
+Never state a price, a plan's contents or a comparison of plans, from memory or from any page: when the person asks which plan to take or what it costs, say the billing page shows the plans and their prices, and give its link again. `get_billing` tells you where the billing stands (whether Onbox can work, the plan's status, the credit), not what to sell.
 
-On yes, call `update_billing` and give them the Checkout link (section 4): they enter the card there, and the trial starts when they come back.
+Then wait (section 4): the plan item turns `done` in `get_account_status` once they are back.
 
 ## 7. The brain build: what it does and what to show while it runs
 
@@ -247,4 +244,4 @@ Everything after setup (the inbox, drafts, approvals, rules, corrections, a webs
 - Give times in the person's local time or relative to now, never in UTC.
 - Never state why something happened unless a tool result says so: when nothing says why, say you do not know, and look where the skill says (for a build, `list_my_inbox`). Never describe a document, page or price you did not read.
 - Never ask the person to run a command or check something a tool can check for you.
-- Never send a Checkout link before explaining the trial (section 6).
+- Never state a price, and never offer to start a plan, add credit or turn on automatic refill yourself: give the billing page (section 6).
